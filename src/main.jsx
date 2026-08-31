@@ -33,646 +33,102 @@ const lessons = {
 const scenarios = [
   ["Low Pressure", "Introduce yourself to a new business contact. Explain what you do and ask one useful question."],
   ["Networking", "An owner says they are busy. Respond professionally and ask for a better time."],
-  ["Sales", "A prospect says, \u201cI already have someone.\u201d Respond without arguing."],
+  ["Sales", "A prospect says, “I already have someone.” Respond without arguing."],
   ["Pricing", "A prospect says your price is too high. Ask a useful question before responding."],
   ["Negotiation", "A buyer wants more work for the same price. Explain your boundary and offer a tradeoff."],
   ["Difficult Customer", "A customer is upset about a missed expectation. Respond calmly and propose the next step."],
   ["High Pressure", "You are asked a technical question you do not know. Answer without pretending to know."]
 ];
 
-const dailyItems = [
-  "Identity review",
-  "Verbal practice",
-  "Scenario drill",
-  "Real-world business action",
-  "Behavior of the day",
-  "Evening review"
+const dailyItems = ["Identity review", "Verbal practice", "Scenario drill", "Real-world business action", "Behavior of the day", "Evening review"];
+
+const identityRules = [
+  "Ask questions before making assumptions.", "Listen completely before responding.", "Speak clearly and use simple words.", "Say what you know and what you do not know.",
+  "Solve the problem before selling the solution.", "Sell outcomes, not hype.", "Use facts before making decisions.", "Pause before reacting under pressure.",
+  "Keep commitments or communicate early when a commitment changes.", "Prepare before important conversations.", "Know the customer's problem before presenting an offer.",
+  "Ask for the next step instead of forcing a sale.", "Know your price and your boundary.", "Look for mutual value in negotiation.", "Treat rejection as information, not identity.",
+  "Receive criticism without losing professional control.", "Track revenue, costs, profit and cash flow.", "Record evidence instead of relying on feelings.", "Finish important work before adding more work.",
+  "Build systems that make good behavior easier.", "Do not invent credentials or experience.", "Do not promise what you cannot deliver.", "Be on time and prepared.",
+  "Protect customer trust.", "Review results and adjust the next action.", "Use technology to reduce repeated work.", "Document important decisions.",
+  "Make the next useful action obvious.", "Practice before high-stakes conversations.", "Let consistent behavior prove the identity."
 ];
 
+const phasePlans = [
+  { name: "Foundation", behaviors: ["Slow down before responding.", "Ask before assuming.", "Finish one important task.", "Prepare before starting.", "Keep one small commitment.", "Listen without interrupting.", "Speak in simple sentences.", "Record evidence instead of feelings.", "Review what you actually did."], phrases: ["Let me make sure I understand.", "What is the main problem you want solved?", "Let me check the facts before I answer.", "Here is what I can do.", "Here is what I cannot confirm yet.", "What would a good result look like?", "I will follow up by the time we agreed.", "Let me write that down.", "The next step is clear."], actions: ["Write your 30-second company introduction.", "Write three problems your service can solve.", "Identify five potential customer types.", "Write your top five professional standards.", "Create a simple daily work block.", "Contact one potential customer.", "Ask one person about a business problem they have.", "Record one real example of professional behavior.", "Review the first eight days and choose one behavior to strengthen."] },
+  { name: "Communication", behaviors: ["Listen first.", "Use fewer words.", "Ask one follow-up question.", "Do not interrupt.", "State the point first.", "Confirm understanding.", "Use professional language.", "Practice calm speech.", "Review one conversation."], phrases: ["Tell me more about that.", "What have you already tried?", "What is causing the biggest delay?", "What result do you need?", "Let me repeat that back to you.", "I understand the issue.", "I need one more detail before I answer.", "Here is the clearest way I see it.", "What should we do next?"], actions: ["Practice your introduction five times aloud.", "Have one discovery conversation.", "Ask three open-ended questions.", "Explain your service without technical jargon.", "Record yourself giving a 30-second explanation.", "Ask a customer or contact what they value most.", "Practice answering a difficult question calmly.", "Use one new professional phrase in a real conversation.", "Write what worked and what you will change next time."] },
+  { name: "Discovery", behaviors: ["Be curious before persuasive.", "Look for the root problem.", "Ask for examples.", "Clarify the desired result.", "Separate symptoms from causes.", "Take notes.", "Do not rush to pitch.", "Summarize the problem.", "Review discovery quality."], phrases: ["What is happening today?", "How does that affect the business?", "How often does this happen?", "What does it cost you in time or money?", "Who is affected by this problem?", "What have you tried?", "What would you change first?", "So the main issue is…", "Would solving that be useful?"], actions: ["Write ten discovery questions.", "Interview one business owner about a problem.", "Ask how the problem is handled today.", "Document one customer workflow.", "Identify one repeated manual task.", "Identify one measurable customer outcome.", "Summarize one customer's problem in three sentences.", "Turn one problem into a possible service.", "Review your discovery notes and remove assumptions."] },
+  { name: "Sales", behaviors: ["Lead with the problem.", "Be direct about value.", "Ask for the next step.", "Do not argue with objections.", "Stay calm after rejection.", "Follow up when promised.", "Use evidence.", "Know your offer.", "Review the conversation."], phrases: ["Based on what you told me, the main issue is…", "Here is the result this service is designed to produce.", "Would you like to look at the next step?", "What concerns you most about the offer?", "What would make this a better fit?", "I understand.", "Let me show you exactly what is included.", "Here is the boundary of the service.", "I will follow up on the date we agreed."], actions: ["Write one clear service offer.", "Send one truthful outreach message.", "Have one sales conversation.", "Handle one objection without arguing.", "Ask one prospect for a next step.", "Follow up with one previous contact.", "Write three reasons a customer should buy your service.", "Review one sales conversation and identify one improvement.", "Count your outreach, conversations and next steps for the week."] },
+  { name: "Negotiation", behaviors: ["Prepare before negotiating.", "Know your minimum acceptable result.", "Ask about interests.", "Offer tradeoffs instead of discounts first.", "Stay calm.", "Do not agree under pressure.", "Document agreements.", "Protect the relationship.", "Review the outcome."], phrases: ["What matters most to you here?", "Here is what I can offer.", "If we add that, we would need to change the scope.", "I can do A or B; I cannot do both at that price.", "Let me think through that before I commit.", "Here is my boundary.", "What tradeoff would work for you?", "Let us confirm the agreement.", "I will send the details in writing."], actions: ["Write your ideal outcome for one offer.", "Write your minimum acceptable outcome.", "Write three tradeoffs you can offer.", "Practice a price objection aloud.", "Practice saying no professionally.", "Negotiate one small real-world issue calmly.", "Write down one agreement after a conversation.", "Review whether you protected your boundary.", "Create your personal negotiation checklist."] },
+  { name: "Delivery", behaviors: ["Set clear expectations.", "Document the work.", "Communicate early.", "Check quality before delivery.", "Track deadlines.", "Close loops.", "Ask for feedback.", "Fix problems without hiding them.", "Review the result."], phrases: ["Here is what will be delivered.", "Here is the deadline.", "Here is what I need from you.", "I found an issue and I am addressing it.", "The work is ready for review.", "Here is the status.", "What needs to change?", "I will correct that.", "The task is complete."], actions: ["Write a simple delivery checklist.", "Create a customer onboarding checklist.", "Define what a completed service looks like.", "Create a quality-control step.", "Document one workflow.", "Create a follow-up schedule.", "Ask for feedback after one completed task.", "Fix one process that caused unnecessary work.", "Review your delivery system and remove one weak step."] },
+  { name: "Systems", behaviors: ["Look for repeatable work.", "Document before automating.", "Use checklists.", "Track useful metrics.", "Reduce unnecessary steps.", "Keep data organized.", "Protect customer information.", "Test before relying on a system.", "Review system performance."], phrases: ["This should be repeatable.", "Let us document the process first.", "What can be automated safely?", "What information do we need?", "What is the success metric?", "What happens when this fails?", "Who owns this step?", "Let us test it before using it live.", "The system should make the next action clear."], actions: ["Document one repeated task step by step.", "Turn one repeated task into a checklist.", "Choose three business metrics to track.", "Create a simple customer record structure.", "Identify one task that can be automated.", "Test one small automation or tool.", "Create a backup/check step for important data.", "Measure time saved by one system.", "Review your systems and keep only useful ones."] },
+  { name: "Leadership", behaviors: ["Own outcomes.", "Set clear expectations.", "Delegate clearly.", "Give useful feedback.", "Receive feedback without defensiveness.", "Communicate problems early.", "Make decisions with available facts.", "Protect standards.", "Review leadership behavior."], phrases: ["I own this outcome.", "Here is the standard.", "Here is what needs to happen next.", "What support do you need?", "What did we learn?", "What is the next decision?", "I will address the issue.", "Let us agree on the owner and deadline.", "Here is what I will improve."], actions: ["Write your leadership standards.", "Give one clear instruction to another person.", "Practice delegating a small task.", "Ask for honest feedback.", "Respond to criticism without defending yourself.", "Set one clear deadline.", "Resolve one small conflict professionally.", "Review one decision you made as a leader.", "Write the leadership behavior you will carry forward."] },
+  { name: "Growth", behaviors: ["Think in systems.", "Measure before changing.", "Protect quality while growing.", "Prioritize high-value work.", "Keep learning.", "Build relationships.", "Ask for referrals ethically.", "Review revenue and costs.", "Choose the next growth experiment."], phrases: ["What is the highest-value next action?", "What evidence supports that?", "What would we measure?", "What is the smallest useful test?", "What would make this scalable?", "What does the customer actually need?", "What is the cost of this decision?", "What did the numbers show?", "What is the next experiment?"], actions: ["Review your revenue and costs.", "Identify your strongest service.", "Identify your weakest business process.", "Ask one satisfied contact for a referral.", "Test one small improvement to your offer.", "Review your customer acquisition activity.", "Write one growth experiment.", "Measure the result of one experiment.", "Choose the next 30-day business priority."] },
+  { name: "Integration", behaviors: ["Act professionally without prompting.", "Use your rules under pressure.", "Keep your standards when tired.", "Stay truthful when challenged.", "Choose evidence over emotion.", "Complete the next useful action.", "Review behavior daily.", "Repeat what works.", "Operate from the integrated identity."], phrases: ["I will check the facts.", "Let me understand the problem first.", "Here is what I can commit to.", "I do not know yet; I will find out.", "Here is the next step.", "I can explain that clearly.", "I will not overpromise.", "Let us confirm the result we want.", "This is how I operate professionally."], actions: ["Run a full identity review.", "Complete one difficult business conversation.", "Practice your entire introduction and offer aloud.", "Run a complete discovery conversation.", "Run a complete sales conversation.", "Review one negotiation using your rules.", "Audit one customer delivery process.", "Review all 90-day evidence.", "Write your next 90-day operating plan."] }
+];
+
+const trainingDays = phasePlans.flatMap((phase, phaseIndex) => phase.behaviors.map((behavior, i) => ({ day: phaseIndex * 9 + i + 1, phase: phase.name, behavior, phrase: phase.phrases[i], action: phase.actions[i] })));
+
 function initialState() {
-  return {
-    passed: [],
-    learned: [],
-    scores: {},
-    scenarioLevel: 0,
-    scenarioScores: [],
-    history: [],
-    daily: {},
-    profile: {},
-    complete: false
-  };
+  return { passed: [], learned: [], scores: {}, scenarioLevel: 0, scenarioScores: [], history: [], daily: {}, profile: {}, complete: false, trainingStart: today(), memory: {}, audits: {}, finalGate: null };
+}
+function today() { return new Date().toISOString().slice(0, 10); }
+function dayNumber(start) { const a = new Date(`${start}T00:00:00Z`).getTime(); const b = new Date(`${today()}T00:00:00Z`).getTime(); return Math.max(1, Math.min(90, Math.floor((b - a) / 86400000) + 1)); }
+function Card({ title, children }) { return <div className="card"><small>{title}</small>{children}</div>; }
+function Title({ title, sub }) { return <div className="title"><div className="eyebrow">TRAINING MODULE</div><h2>{title}</h2><p>{sub}</p></div>; }
+
+function Hero({ s, streak }) { return <header className="hero"><div><div className="eyebrow">EXECUTIVE TRAINING SYSTEM</div><h1>TECH ENTREPRENEUR<br />IDENTITY TRAINING</h1><p>Build the behavior. Practice the behavior. Prove the behavior.</p></div><div className="heroStat"><strong>{s.complete ? "COMPLETE" : "PHASE 1"}</strong><span>{streak ? `${streak}-day training streak` : "Start today's training"}</span></div></header>; }
+
+function Dashboard({ s, streak, dailyScore, dailyDone, progress, passedCount, setTab, day }) {
+  const t = trainingDays[day - 1];
+  return <><Hero s={s} streak={streak} /><div className="grid"><Card title="Today's score"><b>{dailyScore}%</b><span>{dailyDone}/{dailyItems.length} daily actions complete</span></Card><Card title="Training streak"><b>{streak} day{streak === 1 ? "" : "s"}</b><span>Consecutive training days</span></Card><Card title="Overall progress"><b>{progress}%</b><span>{passedCount}/{sections.length} sections passed</span></Card></div><div className="grid"><Card title="90-day program"><b>Day {day}/90</b><span>{t.phase}</span></Card><Card title="Scenario level"><b>Level {Math.min(s.scenarioLevel + 1, scenarios.length)}</b><span>{s.scenarioScores.length} scenario attempts recorded</span></Card><Card title="Training days"><b>{Object.keys(s.daily).length}</b><span>Total days with saved activity</span></Card></div><section className="panel"><h2>Today's Mission</h2><p><strong>Behavior:</strong> {t.behavior}</p><p><strong>Phrase:</strong> {t.phrase}</p><p><strong>Business action:</strong> {t.action}</p><div className="progress"><i style={{ width: `${dailyScore}%` }} /></div><button onClick={() => setTab("daily")}>CONTINUE TRAINING</button></section><section className="panel"><h2>Training path</h2><div className="path">{["LEARN", "PRACTICE", "TEST", "PASS", "INTEGRATE", "REAL ACTION", "REPETITION", "STRESS TEST", "REVIEW", "MASTER"].map((x, i) => <span key={x} className={i < Math.max(1, Math.ceil(progress / 10)) ? "on" : ""}>{x}</span>)}</div></section></>;
 }
 
-function today() {
-  return new Date().toISOString().slice(0, 10);
-}
+function Lesson({ id, answer, setAnswer, s, markLearn, test, feedback, setActive }) { const x = sections.find(a => a[0] === id); const l = lessons[id]; return <div className="modal"><div className="modalInner"><button className="close" onClick={() => setActive(null)}>×</button><div className="eyebrow">SECTION TRAINING</div><h2>{x[1]}</h2><h4>WHAT YOU ARE LEARNING</h4><p>{l[0]}</p><h4>RULES</h4><ul>{l[1].map(r => <li key={r}>{r}</li>)}</ul><h4>PRACTICE</h4><p>{l[2]}</p><textarea value={answer} onChange={e => setAnswer(e.target.value)} /><div className="actions"><button onClick={() => markLearn(id)}>MARK LEARNING COMPLETE</button><button disabled={!s.learned.includes(id)} onClick={() => test(id)}>SUBMIT TEST</button></div>{feedback && <div className={feedback.startsWith("Passed") ? "success" : "error"}>{feedback}</div>}</div></div>; }
 
-function Card({ title, children }) {
-  return (
-    <div className="card">
-      <small>{title}</small>
-      {children}
-    </div>
-  );
-}
+function Phase1({ s, active, setActive, setAnswer, setFeedback, answer, markLearn, test, feedback, passedCount, finalTest }) { return <><Title title="Phase 1 — Identity Profile" sub="Learn each section, practice it, then pass its test." /><div className="sectionList">{sections.map((x, i) => { const passed = s.passed.includes(x[0]); const unlocked = i === 0 || s.passed.includes(sections[i - 1][0]); return <div className={`sectionRow ${passed ? "passed" : ""} ${!unlocked ? "locked" : ""}`} key={x[0]}><div className="num">{passed ? "✓" : i + 1}</div><div><h3>{x[1]}</h3><p>{x[2].join(" • ")}</p></div><button disabled={!unlocked} onClick={() => { setActive(x[0]); setAnswer(""); setFeedback(""); }}>{passed ? "REVIEW" : "OPEN"}</button></div>; })}</div>{active && <Lesson id={active} answer={answer} setAnswer={setAnswer} s={s} markLearn={markLearn} test={test} feedback={feedback} setActive={setActive} />}{passedCount === sections.length && <div className="panel"><h2>Phase 1 Final Test</h2><p>All ten sections are passed.</p><button onClick={finalTest}>RUN FINAL GATE</button>{feedback && <div className="success">{feedback}</div>}</div>}</>; }
 
-function Title({ title, sub }) {
-  return (
-    <div className="title">
-      <div className="eyebrow">TRAINING MODULE</div>
-      <h2>{title}</h2>
-      <p>{sub}</p>
-    </div>
-  );
-}
+function Daily({ todayData, dailyScore, toggleDaily, review, setReview, saveReview, day }) { const t = trainingDays[day - 1]; return <><Title title="Daily Training" sub="One behavior, one phrase, one real business action, and one evidence record every day for 90 days." /><div className="panel"><div className="eyebrow">DAY {day} OF 90 — {t.phase}</div><h2>Behavior of the Day</h2><p>{t.behavior}</p><h2>Verbal Practice</h2><p>{t.phrase}</p><p>Say it aloud five times. Then use the idea in one real conversation when appropriate.</p><h2>Real-World Business Action</h2><p>{t.action}</p></div><div className="panel"><h2>Today's checklist — {dailyScore}%</h2>{dailyItems.map((x, i) => <label className="check" key={x}><input type="checkbox" checked={!!(todayData.items || {})[i]} onChange={() => toggleDaily(i)} /><span>{x}</span></label>)}</div><div className="panel"><h2>End-of-Day Review</h2><p>Record what you actually did, what happened, and what you will repeat.</p><textarea value={review} onChange={e => setReview(e.target.value)} /><button onClick={saveReview}>SAVE REVIEW</button>{todayData.review && <div className="success">Today's review is saved.</div>}</div></>; }
 
-function Hero({ s, streak }) {
-  return (
-    <header className="hero">
-      <div>
-        <div className="eyebrow">EXECUTIVE TRAINING SYSTEM</div>
-        <h1>TECH ENTREPRENEUR<br />IDENTITY TRAINING</h1>
-        <p>Build the behavior. Practice the behavior. Prove the behavior.</p>
-      </div>
-      <div className="heroStat">
-        <strong>{s.complete ? "COMPLETE" : "PHASE 1"}</strong>
-        <span>{streak ? `${streak}-day training streak` : "Start today's training"}</span>
-      </div>
-    </header>
-  );
-}
+function Scenarios({ s, scenarioAnswer, setScenarioAnswer, submitScenario, feedback }) { const level = Math.min(s.scenarioLevel, scenarios.length - 1); const sc = scenarios[level]; return <><Title title="Scenario Training" sub="Progress through increasingly difficult business situations." /><div className="levelbar">{scenarios.map((a, i) => <span className={i <= level ? "on" : ""} key={a[0]}>L{i + 1}</span>)}</div><div className="panel"><div className="eyebrow">LEVEL {level + 1} — {sc[0]}</div><h2>{sc[1]}</h2><textarea value={scenarioAnswer} onChange={e => setScenarioAnswer(e.target.value)} /><button onClick={submitScenario}>SUBMIT RESPONSE</button>{feedback && <div className="success">{feedback}</div>}</div><div className="panel"><h2>Scenario History</h2>{s.scenarioScores.length === 0 ? <p>No scenario attempts recorded yet.</p> : s.scenarioScores.slice(-8).reverse().map((x, i) => <div className="rule" key={i}>{x.date} — Level {x.level} — {x.score}%</div>)}</div></>; }
 
-function Dashboard({ s, streak, dailyScore, dailyDone, progress, passedCount, next, setTab }) {
-  return (
-    <>
-      <Hero s={s} streak={streak} />
+function Memory({ s, day, memoryAnswer, setMemoryAnswer, memoryIndex, setMemoryIndex, saveMemory }) { const ruleIndex = memoryIndex % identityRules.length; const rule = identityRules[ruleIndex]; const t = trainingDays[day - 1]; const current = s.memory?.[day] || {}; return <><Title title="Memory Training" sub="Recall the identity without looking, then prove it with behavior." /><div className="grid"><Card title="Day"><b>{day}/90</b><span>{t.phase}</span></Card><Card title="Rules"><b>{identityRules.length}</b><span>Core identity rules</span></Card><Card title="Recalled"><b>{Object.keys(s.memory || {}).length}</b><span>Days with saved recall</span></Card></div><div className="panel"><div className="eyebrow">FLASHCARD {ruleIndex + 1} OF {identityRules.length}</div><h2>Recall the rule</h2><p>State the professional rule from memory before revealing it.</p><textarea value={memoryAnswer} onChange={e => setMemoryAnswer(e.target.value)} /><button onClick={() => saveMemory(ruleIndex, memoryAnswer, rule)}>REVEAL AND RECORD RECALL</button><div className="success">Rule: {rule}</div></div><div className="panel"><h2>Today's Memory Target</h2><p><strong>Behavior:</strong> {t.behavior}</p><p><strong>Phrase:</strong> {t.phrase}</p><p><strong>Action:</strong> {t.action}</p>{current.answer && <div className="success">Today's recall is recorded.</div>}</div><div className="actions"><button onClick={() => setMemoryIndex((memoryIndex + 1) % identityRules.length)}>NEXT MEMORY CARD</button></div></>; }
 
-      <div className="grid">
-        <Card title="Today's score">
-          <b>{dailyScore}%</b>
-          <span>{dailyDone}/{dailyItems.length} daily actions complete</span>
-        </Card>
+function Audit({ s, setS, day, feedback, setFeedback }) { const [metrics, setMetrics] = useState({}); const [evidence, setEvidence] = useState(""); const [score, setScore] = useState(""); const t = trainingDays[day - 1]; const saved = s.audits?.[today()]; const metricNames = ["Customers contacted", "Sales conversations", "Problems solved", "Proposals", "Revenue", "Skills learned", "Systems created", "Difficult conversations", "Commitments kept"]; function save() { setS(prev => ({ ...prev, audits: { ...prev.audits, [today()]: { metrics, evidence, score, behavior: t.behavior, phrase: t.phrase, action: t.action } } })); setFeedback("Identity audit saved."); } return <><Title title="Identity Audit" sub="Measure observable evidence, not feelings." /><div className="panel"><h2>Today's Behavior</h2><p>{t.behavior}</p><h2>Evidence</h2><p>Write what you actually did that proves or disproves today's behavior.</p><textarea value={evidence} onChange={e => setEvidence(e.target.value)} /><h2>Professional Behavior Score</h2><input type="number" min="0" max="100" value={score} onChange={e => setScore(e.target.value)} /><h2>Business Evidence</h2>{metricNames.map(x => <label className="metric" key={x}><span>{x}</span><input type="number" min="0" value={metrics[x] || ""} onChange={e => setMetrics({ ...metrics, [x]: e.target.value })} /></label>)}<button onClick={save}>SAVE AUDIT</button>{feedback && <div className="success">{feedback}</div>}{saved && <div className="success">Saved audit exists for today.</div>}</div></>; }
 
-        <Card title="Training streak">
-          <b>{streak} day{streak === 1 ? "" : "s"}</b>
-          <span>Consecutive training days</span>
-        </Card>
+function Final({ passedCount, finalTest, feedback, s }) { const passed = s.finalGate?.passed; return <><Title title="Final Test" sub="Complete all Phase 1 sections to run the final gate." /><div className="panel"><h2>{passed ? "Phase 1 Passed" : passedCount === sections.length ? "Ready" : "Locked"}</h2><p>{passedCount}/{sections.length} Phase 1 sections passed.</p><button disabled={passedCount !== sections.length || passed} onClick={finalTest}>{passed ? "FINAL GATE PASSED" : "RUN FINAL GATE"}</button>{feedback && <div className="success">{feedback}</div>}{passed && <div className="success">Final gate completed on {s.finalGate.date}. The 90-day integration program is active.</div>}</div></>; }
 
-        <Card title="Overall progress">
-          <b>{progress}%</b>
-          <span>{passedCount}/{sections.length} sections passed</span>
-        </Card>
-      </div>
+function Settings({ s, update, setFeedback, feedback, reset }) { const [prompt, setPrompt] = useState(s.profile?.prompt || ""); return <><Title title="Settings" sub="Your training data is stored locally in this browser." /><div className="panel"><h2>How to Use the Identity Training Prompt</h2><p>Paste your master identity-training prompt into the field below and select SAVE. It is stored with your local training profile so you can keep the instructions with your system.</p><p>The 90-day training program, memory training, verbal practice, business actions, behavior of the day, scenarios, and identity audits are already built into this dashboard. Saving the prompt does not replace those systems.</p><h2>Identity Training Prompt</h2><textarea value={prompt} onChange={e => setPrompt(e.target.value)} /><button onClick={() => { update({ profile: { ...(s.profile || {}), prompt } }); setFeedback("Identity prompt saved locally."); }}>SAVE</button>{feedback && <div className="success">{feedback}</div>}</div><div className="panel"><h2>90-Day Program</h2><p>Day 1 begins from your saved training start date. The program advances one day at a time and stops at Day 90.</p><p>Each day provides a behavior, a phrase to practice aloud, a real-world business action, and an identity-audit target.</p></div><div className="panel danger"><h2>Reset Training</h2><p>This erases local training progress on this browser.</p><button className="dangerBtn" onClick={reset}>RESET SYSTEM</button></div></>; }
 
-      <div className="grid">
-        <Card title="Scenario level">
-          <b>Level {Math.min(s.scenarioLevel + 1, scenarios.length)}</b>
-          <span>{s.scenarioScores.length} scenario attempts recorded</span>
-        </Card>
-
-        <Card title="Training days">
-          <b>{Object.keys(s.daily).length}</b>
-          <span>Total days with saved activity</span>
-        </Card>
-
-        <Card title="Next action">
-          <b>{next ? next[1] : "Final Test"}</b>
-          <span>{next ? "Complete the next section." : "Run the final gate."}</span>
-        </Card>
-      </div>
-
-      <section className="panel">
-        <h2>Today's Mission</h2>
-        <p>Practice deliberately. Complete the checklist, run a scenario, and record what happened.</p>
-        <div className="progress">
-          <i style={{ width: `${dailyScore}%` }} />
-        </div>
-        <button onClick={() => setTab("daily")}>CONTINUE TRAINING</button>
-      </section>
-
-      <section className="panel">
-        <h2>Training path</h2>
-        <div className="path">
-          {["LEARN", "PRACTICE", "TEST", "PASS", "INTEGRATE", "REAL ACTION", "REPETITION", "STRESS TEST", "REVIEW", "MASTER"].map((x, i) =>
-            <span key={x} className={i < Math.max(1, Math.ceil(progress / 10)) ? "on" : ""}>{x}</span>
-          )}
-        </div>
-      </section>
-    </>
-  );
-}
-
-function Lesson({ id, answer, setAnswer, s, markLearn, test, feedback, setActive }) {
-  const x = sections.find(a => a[0] === id);
-  const l = lessons[id];
-
-  return (
-    <div className="modal">
-      <div className="modalInner">
-        <button className="close" onClick={() => setActive(null)}>×</button>
-        <div className="eyebrow">SECTION TRAINING</div>
-        <h2>{x[1]}</h2>
-
-        <h4>WHAT YOU ARE LEARNING</h4>
-        <p>{l[0]}</p>
-
-        <h4>RULES</h4>
-        <ul>{l[1].map(r => <li key={r}>{r}</li>)}</ul>
-
-        <h4>PRACTICE</h4>
-        <p>{l[2]}</p>
-
-        <textarea
-          value={answer}
-          onChange={e => setAnswer(e.target.value)}
-          placeholder="Complete the practice exercise here..."
-        />
-
-        <div className="actions">
-          <button onClick={() => markLearn(id)}>MARK LEARNING COMPLETE</button>
-          <button disabled={!s.learned.includes(id)} onClick={() => test(id)}>SUBMIT TEST</button>
-        </div>
-
-        {feedback && <div className={feedback.startsWith("Passed") ? "success" : "error"}>{feedback}</div>}
-      </div>
-    </div>
-  );
-}
-
-function Phase1({ s, active, setActive, setAnswer, setFeedback, answer, markLearn, test, feedback, passedCount, finalTest }) {
-  return (
-    <>
-      <Title title="Phase 1 — Identity Profile" sub="Learn each section, practice it, then pass its test." />
-      <div className="sectionList">
-        {sections.map((x, i) => {
-          const passed = s.passed.includes(x[0]);
-          const unlocked = i === 0 || s.passed.includes(sections[i - 1][0]);
-
-          return (
-            <div className={`sectionRow ${passed ? "passed" : ""} ${!unlocked ? "locked" : ""}`} key={x[0]}>
-              <div className="num">{passed ? "✓" : i + 1}</div>
-              <div>
-                <h3>{x[1]}</h3>
-                <p>{x[2].join(" • ")}</p>
-              </div>
-              <button disabled={!unlocked} onClick={() => {
-                setActive(x[0]);
-                setAnswer("");
-                setFeedback("");
-              }}>
-                {passed ? "REVIEW" : "OPEN"}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-
-      {active && (
-        <Lesson
-          id={active}
-          answer={answer}
-          setAnswer={setAnswer}
-          s={s}
-          markLearn={markLearn}
-          test={test}
-          feedback={feedback}
-          setActive={setActive}
-        />
-      )}
-
-      {passedCount === sections.length && (
-        <div className="panel">
-          <h2>Phase 1 Final Test</h2>
-          <p>All ten sections are passed.</p>
-          <button onClick={finalTest}>RUN FINAL GATE</button>
-          {feedback && <div className="success">{feedback}</div>}
-        </div>
-      )}
-    </>
-  );
-}
-
-function Daily({ todayData, dailyScore, toggleDaily, review, setReview, saveReview }) {
-  return (
-    <>
-      <Title title="Daily Training" sub="Complete the six daily actions and record your result." />
-
-      <div className="panel">
-        <h2>Today's checklist — {dailyScore}%</h2>
-
-        {dailyItems.map((x, i) =>
-          <label className="check" key={x}>
-            <input
-              type="checkbox"
-              checked={!!(todayData.items || {})[i]}
-              onChange={() => toggleDaily(i)}
-            />
-            <span>{x}</span>
-          </label>
-        )}
-      </div>
-
-      <div className="panel">
-        <h2>End-of-Day Review</h2>
-        <p>What did you practice? What happened? What will you repeat tomorrow?</p>
-
-        <textarea
-          value={review}
-          onChange={e => setReview(e.target.value)}
-          placeholder="Write your review..."
-        />
-
-        <button onClick={saveReview}>SAVE REVIEW</button>
-
-        {todayData.review && (
-          <div className="success">Today's review is saved.</div>
-        )}
-      </div>
-    </>
-  );
-}
-
-function Scenarios({ s, scenarioAnswer, setScenarioAnswer, submitScenario, feedback }) {
-  const level = Math.min(s.scenarioLevel, scenarios.length - 1);
-  const sc = scenarios[level];
-
-  return (
-    <>
-      <Title title="Scenario Training" sub="Progress through increasingly difficult business situations." />
-
-      <div className="levelbar">
-        {scenarios.map((a, i) =>
-          <span className={i <= level ? "on" : ""} key={a[0]}>L{i + 1}</span>
-        )}
-      </div>
-
-      <div className="panel">
-        <div className="eyebrow">LEVEL {level + 1} — {sc[0]}</div>
-        <h2>{sc[1]}</h2>
-
-        <textarea
-          value={scenarioAnswer}
-          onChange={e => setScenarioAnswer(e.target.value)}
-          placeholder="Type your professional response..."
-        />
-
-        <button onClick={submitScenario}>SUBMIT RESPONSE</button>
-
-        {feedback && <div className="success">{feedback}</div>}
-      </div>
-
-      <div className="panel">
-        <h2>Scenario History</h2>
-        {s.scenarioScores.length === 0
-          ? <p>No scenario attempts recorded yet.</p>
-          : s.scenarioScores.slice(-8).reverse().map((x, i) =>
-            <div className="rule" key={i}>
-              {x.date} — Level {x.level} — {x.score}%
-            </div>
-          )
-        }
-      </div>
-    </>
-  );
-}
-
-function Memory() {
-  return (
-    <>
-      <Title title="Memory Training" sub="Recall beats passive reading." />
-
-      <div className="grid">
-        <Card title="Rules"><b>Recall</b><span>Review the rules from completed sections.</span></Card>
-        <Card title="Learning"><b>Practice</b><span>Recall before looking at the answer.</span></Card>
-        <Card title="Applied"><b>Scenarios</b><span>Use the rules under pressure.</span></Card>
-      </div>
-
-      <div className="panel">
-        <h2>Core Loop</h2>
-        <p>IDENTITY → LEARN → PRACTICE → TEST → PASS → REAL ACTION → FEEDBACK → REPETITION</p>
-      </div>
-    </>
-  );
-}
-
-function Audit({ setFeedback, feedback }) {
-  return (
-    <>
-      <Title title="Identity Audit" sub="Measure observable evidence." />
-
-      <div className="panel">
-        {[
-          "Customers contacted",
-          "Sales conversations",
-          "Problems solved",
-          "Proposals",
-          "Revenue",
-          "Skills learned",
-          "Systems created",
-          "Difficult conversations",
-          "Commitments kept"
-        ].map(x =>
-          <label className="metric" key={x}>
-            <span>{x}</span>
-            <input type="number" min="0" defaultValue="0" />
-          </label>
-        )}
-
-        <button onClick={() => setFeedback("Audit recorded for this session.")}>SAVE AUDIT</button>
-        {feedback && <div className="success">{feedback}</div>}
-      </div>
-    </>
-  );
-}
-
-function Final({ passedCount, finalTest, feedback }) {
-  return (
-    <>
-      <Title title="Final Test" sub="Complete all Phase 1 sections to run the final gate." />
-
-      <div className="panel">
-        <h2>{passedCount === sections.length ? "Ready" : "Locked"}</h2>
-        <p>{passedCount}/{sections.length} Phase 1 sections passed.</p>
-
-        <button disabled={passedCount !== sections.length} onClick={finalTest}>
-          RUN FINAL GATE
-        </button>
-
-        {feedback && <div className="success">{feedback}</div>}
-      </div>
-    </>
-  );
-}
-
-function Settings({ s, update, setFeedback, feedback, reset }) {
-  const [prompt, setPrompt] = useState(s.profile?.prompt || "");
-
-  return (
-    <>
-      <Title title="Settings" sub="Your training data is stored locally in this browser." />
-
-      <div className="panel">
-        <h2>Identity Training Prompt</h2>
-
-        <textarea
-          value={prompt}
-          onChange={e => setPrompt(e.target.value)}
-          placeholder="Enter your identity-training prompt..."
-        />
-
-        <button onClick={() => {
-          update({ profile: { ...(s.profile || {}), prompt } });
-          setFeedback("Identity prompt saved locally.");
-        }}>
-          SAVE
-        </button>
-
-        {feedback && <div className="success">{feedback}</div>}
-      </div>
-
-      <div className="panel danger">
-        <h2>Reset Training</h2>
-        <p>This erases local training progress on this browser.</p>
-        <button className="dangerBtn" onClick={reset}>RESET SYSTEM</button>
-      </div>
-    </>
-  );
-}
-
-function IdentityProfile({ s, update, setFeedback, feedback }) {
-  const fields = [
-    ["mission", "Mission", "What are you building and why?"],
-    ["values", "Values", "What principles guide your decisions?"],
-    ["standards", "Standards", "What professional standards will you always follow?"],
-    ["strengths", "Strengths", "What can you already do well?"],
-    ["skills", "Skills to Build", "What skills do you need to develop?"],
-    ["goals", "Business Goals", "What specific business results are you working toward?"]
-  ];
-
-  return (
-    <>
-      <Title
-        title="Identity Profile"
-        sub="Define the professional identity you are building through truthful, repeatable behavior."
-      />
-
-      <div className="panel">
-        {fields.map(([key, label, placeholder]) => (
-          <div key={key}>
-            <h2>{label}</h2>
-            <textarea
-              value={s.profile?.[key] || ""}
-              onChange={e =>
-                update({
-                  profile: {
-                    ...(s.profile || {}),
-                    [key]: e.target.value
-                  }
-                })
-              }
-              placeholder={placeholder}
-            />
-          </div>
-        ))}
-
-        <button onClick={() => setFeedback("Identity profile saved locally.")}>
-          SAVE PROFILE
-        </button>
-
-        {feedback && <div className="success">{feedback}</div>}
-      </div>
-    </>
-  );
-}
+function IdentityProfile({ s, update, setFeedback, feedback }) { const fields = [["mission", "Mission", "What are you building and why?"], ["values", "Values", "What principles guide your decisions?"], ["standards", "Standards", "What professional standards will you always follow?"], ["strengths", "Strengths", "What can you already do well?"], ["skills", "Skills to Build", "What skills do you need to develop?"], ["goals", "Business Goals", "What specific business results are you working toward?"]]; return <><Title title="Identity Profile" sub="Define the professional identity you are building through truthful, repeatable behavior." /><div className="panel">{fields.map(([key, label, question]) => <div key={key}><h2>{label}</h2><p>{question}</p><textarea value={s.profile?.[key] || ""} onChange={e => update({ profile: { ...(s.profile || {}), [key]: e.target.value } })} /></div>)}<button onClick={() => setFeedback("Identity profile saved locally.")}>SAVE PROFILE</button>{feedback && <div className="success">{feedback}</div>}</div></>; }
 
 function App() {
-  const [s, setS] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(KEY)) || initialState();
-    } catch {
-      return initialState();
-    }
-  });
-
-  const [tab, setTab] = useState("dashboard");
-  const [active, setActive] = useState(null);
-  const [answer, setAnswer] = useState("");
-  const [scenarioAnswer, setScenarioAnswer] = useState("");
-  const [feedback, setFeedback] = useState("");
-  const [review, setReview] = useState("");
-
-  useEffect(() => {
-    localStorage.setItem(KEY, JSON.stringify(s));
-  }, [s]);
-
-  const date = today();
-  const todayData = s.daily[date] || {};
-  const passedCount = s.passed.length;
-  const progress = Math.round((passedCount / sections.length) * 100);
-  const next = sections.find(x => !s.passed.includes(x[0]));
-  const dailyDone = Object.values(todayData.items || {}).filter(Boolean).length;
-  const dailyScore = Math.round((dailyDone / dailyItems.length) * 100);
-
-  const streak = useMemo(() => {
-    let count = 0;
-    let d = new Date();
-    while (true) {
-      const key = d.toISOString().slice(0, 10);
-      const item = s.daily[key];
-      if (!item || !item.items || Object.values(item.items).filter(Boolean).length === 0) break;
-      count++;
-      d.setDate(d.getDate() - 1);
-    }
-    return count;
-  }, [s.daily]);
-
-  function update(patch) {
-    setS(prev => ({ ...prev, ...patch }));
-  }
-
-  function toggleDaily(i) {
-    const items = { ...(todayData.items || {}), [i]: !(todayData.items || {})[i] };
-    setS(prev => ({
-      ...prev,
-      daily: { ...prev.daily, [date]: { ...(prev.daily[date] || {}), items } }
-    }));
-  }
-
-  function markLearn(id) {
-    update({ learned: [...new Set([...s.learned, id])] });
-    setFeedback("Learning recorded.");
-  }
-
-  function test(id) {
-    const good = answer.trim().length >= 25;
-    const score = good ? 90 : 40;
-
-    update({
-      scores: { ...s.scores, [id]: score },
-      passed: good ? [...new Set([...s.passed, id])] : s.passed
-    });
-
-    setFeedback(good
-      ? `Passed — ${score}%`
-      : `Failed — ${score}%. Write a more complete applied response.`
-    );
-
-    if (good) setAnswer("");
-  }
-
-  function submitScenario() {
-    const length = scenarioAnswer.trim().length;
-    const score = length >= 80 ? 95 : length >= 30 ? 75 : 40;
-    const passed = score >= 75;
-
-    setS(prev => ({
-      ...prev,
-      scenarioLevel: passed ? Math.min(prev.scenarioLevel + 1, scenarios.length - 1) : prev.scenarioLevel,
-      scenarioScores: [
-        ...prev.scenarioScores,
-        { date, level: Math.min(prev.scenarioLevel + 1, scenarios.length), score }
-      ]
-    }));
-
-    setFeedback(
-      passed
-        ? `Scenario scored ${score}%. Level recorded.`
-        : `Scenario scored ${score}%. Write a fuller response and try again.`
-    );
-
-    setScenarioAnswer("");
-  }
-
-  function saveReview() {
-    if (!review.trim()) return;
-
-    const existing = s.daily[date] || {};
-
-    setS(prev => ({
-      ...prev,
-      daily: {
-        ...prev.daily,
-        [date]: { ...existing, review }
-      },
-      history: [
-        ...prev.history.filter(x => x.date !== date),
-        { date, dailyScore, review }
-      ]
-    }));
-
-    setFeedback("End-of-day review saved.");
-    setReview("");
-  }
-
-  function finalTest() {
-    if (passedCount !== sections.length) {
-      setFeedback("Complete all Phase 1 sections first.");
-      return;
-    }
-
-    update({ complete: true });
-    setFeedback("SYSTEM COMPLETE — Phase 1 passed.");
-  }
-
-  function reset() {
-    if (confirm("Erase all local training progress?")) {
-      localStorage.removeItem(KEY);
-      location.reload();
-    }
-  }
-
+  const [s, setS] = useState(() => { try { const raw = JSON.parse(localStorage.getItem(KEY)); return raw ? { ...initialState(), ...raw, trainingStart: raw.trainingStart || today(), memory: raw.memory || {}, audits: raw.audits || {}, finalGate: raw.finalGate || null } : initialState(); } catch { return initialState(); } });
+  const [tab, setTab] = useState("dashboard"); const [active, setActive] = useState(null); const [answer, setAnswer] = useState(""); const [scenarioAnswer, setScenarioAnswer] = useState(""); const [feedback, setFeedback] = useState(""); const [review, setReview] = useState(""); const [memoryAnswer, setMemoryAnswer] = useState(""); const [memoryIndex, setMemoryIndex] = useState(0);
+  useEffect(() => { localStorage.setItem(KEY, JSON.stringify(s)); }, [s]);
+  const date = today(); const todayData = s.daily[date] || {}; const passedCount = s.passed.length; const progress = Math.round((passedCount / sections.length) * 100); const dailyDone = Object.values(todayData.items || {}).filter(Boolean).length; const dailyScore = Math.round((dailyDone / dailyItems.length) * 100); const day = dayNumber(s.trainingStart);
+  const streak = useMemo(() => { let count = 0; let d = new Date(); while (true) { const key = d.toISOString().slice(0, 10); const item = s.daily[key]; if (!item || !item.items || Object.values(item.items).filter(Boolean).length === 0) break; count++; d.setDate(d.getDate() - 1); } return count; }, [s.daily]);
+  function update(patch) { setS(prev => ({ ...prev, ...patch })); }
+  function toggleDaily(i) { const items = { ...(todayData.items || {}), [i]: !(todayData.items || {})[i] }; setS(prev => ({ ...prev, daily: { ...prev.daily, [date]: { ...(prev.daily[date] || {}), items } } })); }
+  function markLearn(id) { update({ learned: [...new Set([...s.learned, id])] }); setFeedback("Learning recorded."); }
+  function test(id) { const good = answer.trim().length >= 25; const score = good ? 90 : 40; update({ scores: { ...s.scores, [id]: score }, passed: good ? [...new Set([...s.passed, id])] : s.passed }); setFeedback(good ? `Passed — ${score}%` : `Failed — ${score}%. Write a more complete applied response.`); if (good) setAnswer(""); }
+  function submitScenario() { const length = scenarioAnswer.trim().length; const score = length >= 80 ? 95 : length >= 30 ? 75 : 40; const passed = score >= 75; setS(prev => ({ ...prev, scenarioLevel: passed ? Math.min(prev.scenarioLevel + 1, scenarios.length - 1) : prev.scenarioLevel, scenarioScores: [...prev.scenarioScores, { date, level: Math.min(prev.scenarioLevel + 1, scenarios.length), score }] })); setFeedback(passed ? `Scenario scored ${score}%. Level recorded.` : `Scenario scored ${score}%. Write a fuller response and try again.`); setScenarioAnswer(""); }
+  function saveReview() { if (!review.trim()) return; const existing = s.daily[date] || {}; setS(prev => ({ ...prev, daily: { ...prev.daily, [date]: { ...existing, review } }, history: [...prev.history.filter(x => x.date !== date), { date, dailyScore, review }] })); setFeedback("End-of-day review saved."); setReview(""); }
+  function saveMemory(ruleIndex, response, rule) { const recalled = response.trim().length >= 20; setS(prev => ({ ...prev, memory: { ...prev.memory, [day]: { ruleIndex, answer: response, rule, recalled, date } } })); setFeedback(recalled ? "Recall recorded as complete." : "Recall recorded. Practice the rule again tomorrow."); setMemoryAnswer(""); }
+  function finalTest() { if (passedCount !== sections.length) { setFeedback("Complete all Phase 1 sections first."); return; } const gate = { passed: true, date, sectionsPassed: sections.length }; setS(prev => ({ ...prev, complete: true, finalGate: gate })); setFeedback("SYSTEM COMPLETE — Phase 1 final gate passed. 90-day integration training is active."); setTab("final"); }
+  function reset() { if (confirm("Erase all local training progress?")) { localStorage.removeItem(KEY); location.reload(); } }
   function render() {
-    if (tab === "dashboard") return <Dashboard s={s} streak={streak} dailyScore={dailyScore} dailyDone={dailyDone} progress={progress} passedCount={passedCount} next={next} setTab={setTab} />;
+    if (tab === "dashboard") return <Dashboard s={s} streak={streak} dailyScore={dailyScore} dailyDone={dailyDone} progress={progress} passedCount={passedCount} setTab={setTab} day={day} />;
     if (tab === "identity") return <IdentityProfile s={s} update={update} setFeedback={setFeedback} feedback={feedback} />;
     if (tab === "phase1") return <Phase1 s={s} active={active} setActive={setActive} setAnswer={setAnswer} setFeedback={setFeedback} answer={answer} markLearn={markLearn} test={test} feedback={feedback} passedCount={passedCount} finalTest={finalTest} />;
-    if (tab === "daily") return <Daily todayData={todayData} dailyScore={dailyScore} toggleDaily={toggleDaily} review={review} setReview={setReview} saveReview={saveReview} />;
+    if (tab === "daily") return <Daily todayData={todayData} dailyScore={dailyScore} toggleDaily={toggleDaily} review={review} setReview={setReview} saveReview={saveReview} day={day} />;
     if (tab === "scenarios") return <Scenarios s={s} scenarioAnswer={scenarioAnswer} setScenarioAnswer={setScenarioAnswer} submitScenario={submitScenario} feedback={feedback} />;
-    if (tab === "memory") return <Memory />;
-    if (tab === "audit") return <Audit setFeedback={setFeedback} feedback={feedback} />;
-    if (tab === "final") return <Final passedCount={passedCount} finalTest={finalTest} feedback={feedback} />;
+    if (tab === "memory") return <Memory s={s} day={day} memoryAnswer={memoryAnswer} setMemoryAnswer={setMemoryAnswer} memoryIndex={memoryIndex} setMemoryIndex={setMemoryIndex} saveMemory={saveMemory} />;
+    if (tab === "audit") return <Audit s={s} setS={setS} day={day} feedback={feedback} setFeedback={setFeedback} />;
+    if (tab === "final") return <Final passedCount={passedCount} finalTest={finalTest} feedback={feedback} s={s} />;
     if (tab === "settings") return <Settings s={s} update={update} setFeedback={setFeedback} feedback={feedback} reset={reset} />;
-    return <Dashboard s={s} streak={streak} dailyScore={dailyScore} dailyDone={dailyDone} progress={progress} passedCount={passedCount} next={next} setTab={setTab} />;
+    return <Dashboard s={s} streak={streak} dailyScore={dailyScore} dailyDone={dailyDone} progress={progress} passedCount={passedCount} setTab={setTab} day={day} />;
   }
-
-  return (
-    <div className="app">
-      <aside>
-        <div className="brand">TE<span>IS</span></div>
-        <div className="brandSub">TECH ENTREPRENEUR<br />IDENTITY SYSTEM</div>
-
-        {[
-          ["dashboard", "Dashboard"],
-          ["identity", "Identity Profile"],
-          ["phase1", "Phase 1 — Identity"],
-          ["daily", "Daily Training"],
-          ["scenarios", "Scenario Training"],
-          ["memory", "Memory Training"],
-          ["audit", "Identity Audit"],
-          ["final", "Final Test"],
-          ["settings", "Settings"]
-        ].map(([id, name]) =>
-          <button
-            className={tab === id ? "nav active" : "nav"}
-            key={id}
-            onClick={() => {
-              setTab(id);
-              setFeedback("");
-            }}
-          >
-            {name}
-          </button>
-        )}
-
-        <div className="sideProgress">
-          <small>PHASE 1</small>
-          <div className="progress"><i style={{ width: `${progress}%` }} /></div>
-          <b>{progress}%</b>
-        </div>
-      </aside>
-
-      <main>{render()}</main>
-    </div>
-  );
+  return <div className="app"><aside><div className="brand">TE<span>IS</span></div><div className="brandSub">TECH ENTREPRENEUR<br />IDENTITY SYSTEM</div>{[["dashboard", "Dashboard"], ["identity", "Identity Profile"], ["phase1", "Phase 1 — Identity"], ["daily", "Daily Training"], ["scenarios", "Scenario Training"], ["memory", "Memory Training"], ["audit", "Identity Audit"], ["final", "Final Test"], ["settings", "Settings"]].map(([id, name]) => <button className={tab === id ? "nav active" : "nav"} key={id} onClick={() => { setTab(id); setFeedback(""); }}>{name}</button>)}<div className="sideProgress"><small>PHASE 1</small><div className="progress"><i style={{ width: `${progress}%` }} /></div><b>{progress}%</b></div></aside><main>{render()}</main></div>;
 }
 
 createRoot(document.getElementById("root")).render(<App />);
