@@ -205,6 +205,7 @@ function App() {
 
   function render() {
     if (tab === "dashboard") return <Dashboard />;
+    if (tab === "identity") return <IdentityProfile />;
     if (tab === "phase1") return <Phase1 />;
     if (tab === "daily") return <Daily />;
     if (tab === "scenarios") return <Scenarios />;
@@ -557,6 +558,52 @@ function App() {
     );
   }
 
+  function IdentityProfile() {
+    const fields = [
+      ["mission", "Mission", "What are you building and why?"],
+      ["values", "Values", "What principles guide your decisions?"],
+      ["standards", "Standards", "What professional standards will you always follow?"],
+      ["strengths", "Strengths", "What can you already do well?"],
+      ["skills", "Skills to Build", "What skills do you need to develop?"],
+      ["goals", "Business Goals", "What specific business results are you working toward?"]
+    ];
+
+    return (
+      <>
+        <Title
+          title="Identity Profile"
+          sub="Define the professional identity you are building through truthful, repeatable behavior."
+        />
+
+        <div className="panel">
+          {fields.map(([key, label, placeholder]) => (
+            <div key={key}>
+              <h2>{label}</h2>
+              <textarea
+                value={s.profile?.[key] || ""}
+                onChange={e =>
+                  update({
+                    profile: {
+                      ...(s.profile || {}),
+                      [key]: e.target.value
+                    }
+                  })
+                }
+                placeholder={placeholder}
+              />
+            </div>
+          ))}
+
+          <button onClick={() => setFeedback("Identity profile saved locally.")}>
+            SAVE PROFILE
+          </button>
+
+          {feedback && <div className="success">{feedback}</div>}
+        </div>
+      </>
+    );
+  }
+
   function Card({ title, children }) {
     return (
       <div className="card">
@@ -584,6 +631,7 @@ function App() {
 
         {[
           ["dashboard", "Dashboard"],
+          ["identity", "Identity Profile"],
           ["phase1", "Phase 1 — Identity"],
           ["daily", "Daily Training"],
           ["scenarios", "Scenario Training"],
