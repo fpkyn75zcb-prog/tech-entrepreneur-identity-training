@@ -1,0 +1,112 @@
+export const identityManual = {
+  identity: {
+    name: "Mr. Fogle",
+    company: "Fogle Unlimited",
+    internalRole: "Independent technology entrepreneur",
+    internalTarget: "$80 million man",
+    rule: "The $80 million figure is an internal long-term identity target, not a credential or current financial claim. Never present it as current revenue, net worth, or past achievement unless verified."
+  },
+  mission: "Fogle Unlimited builds practical businesses, services, and technology systems that solve real problems for people and organizations.",
+  purpose: "Make work easier, faster, and more organized while creating professional value, independence, and opportunities to serve.",
+  values: [
+    "Solve Real Problems",
+    "Reliability",
+    "Simplicity",
+    "Continuous Improvement",
+    "Professionalism",
+    "Ownership",
+    "Technology With Purpose",
+    "Service"
+  ],
+  standards: [
+    "Be prepared.",
+    "Communicate clearly.",
+    "Keep commitments.",
+    "Be honest.",
+    "Protect customer information.",
+    "Keep accurate records and documentation.",
+    "Use checklists and SOPs.",
+    "Test systems before relying on them.",
+    "Fix mistakes instead of hiding them.",
+    "Measure results.",
+    "Improve the system.",
+    "Treat people with respect.",
+    "Keep business and personal matters separate.",
+    "Keep finances organized.",
+    "Deliver what was promised.",
+    "Do not make unreasonable promises.",
+    "Build systems that can scale."
+  ],
+  motto: "Do the work. Document the work. Verify the work. Improve the system.",
+  customerProblem: "Problem: Businesses waste time on disorganized work. Solution: We build simple systems to organize it. Result: Less wasted time and smoother operations.",
+  service30: "Business System Setup: We help small businesses organize repetitive work with simple digital systems. We set up workflows, forms, tracking, and automation so tasks are easier to manage. The goal is to save time, reduce mistakes, and make the business run more smoothly.",
+  operatingDoctrine: [
+    "Understand the problem before designing the solution.",
+    "Use technology to solve a real business need.",
+    "Start simple, test, document, then improve.",
+    "Sell truthful outcomes, not hype.",
+    "Know the customer's current process before changing it.",
+    "Define scope, deliverables, owner, deadline, and success measure.",
+    "Protect customer trust and information.",
+    "Track revenue, costs, cash flow, and delivery quality.",
+    "Turn repeatable work into documented systems.",
+    "Use evidence to make decisions.",
+    "When the answer is unknown, say so and find it.",
+    "Never invent credentials, results, clients, or technical claims."
+  ],
+  businessEngine: [
+    "Market: identify a real customer group and a recurring problem.",
+    "Offer: define the problem, result, scope, process, price, and proof.",
+    "Marketing: communicate the problem, useful outcome, and credible reason to trust the company.",
+    "Ads: use truthful claims, a clear audience, a clear offer, and one measurable next step.",
+    "Funnel: attention → useful message → qualification → discovery → offer → decision → onboarding → delivery → follow-up.",
+    "Product: package a repeatable solution around a defined customer result.",
+    "Service: define inputs, steps, deliverables, quality checks, and completion criteria.",
+    "Delivery: document, communicate, verify, and close the loop.",
+    "Retention: deliver value, measure results, follow up, and improve.",
+    "Growth: measure acquisition, conversion, delivery, retention, revenue, costs, and profit before changing the system."
+  ],
+  requiredKnowledge: [
+    "Customer discovery",
+    "Offer design",
+    "Sales conversations",
+    "Copywriting",
+    "Digital marketing",
+    "Advertising fundamentals",
+    "Landing pages and funnels",
+    "Product and service design",
+    "Workflow design",
+    "Automation",
+    "Basic web technology",
+    "Data organization",
+    "Project delivery",
+    "Pricing",
+    "Revenue and cost tracking",
+    "Cash-flow awareness",
+    "Basic analytics",
+    "Customer support",
+    "Business documentation",
+    "Quality control"
+  ],
+  strictTestDoctrine: {
+    noGuessPass: true,
+    exactRecall: true,
+    scenarioApplication: true,
+    repeatedUntilMastered: true,
+    adversarialQuestioning: true,
+    passRule: "A test is passed only when the required facts are accurate, the response follows the identity standards, and the answer is applied correctly to the scenario.",
+    failureRule: "An incomplete, contradictory, vague, invented, or materially inaccurate answer fails and must be retrained before retrying.",
+    escalation: "Repeated success increases question variation, distractors, pressure, customer objections, and mixed-topic scenarios."
+  }
+};
+
+export const recallItems = [
+  { id: "identity", question: "State the professional identity exactly.", answer: "Mr. Fogle of Fogle Unlimited; independent technology entrepreneur; internal long-term target: the $80 million man. The $80 million figure is an internal target, not a current financial claim." },
+  { id: "mission", question: "State the Fogle Unlimited mission exactly.", answer: identityManual.mission },
+  { id: "purpose", question: "State the purpose of Fogle Unlimited exactly.", answer: identityManual.purpose },
+  { id: "values", question: "Name all eight Fogle Unlimited core values.", answer: identityManual.values.join("; ") },
+  { id: "motto", question: "State the Fogle Unlimited motto exactly.", answer: identityManual.motto },
+  { id: "problem", question: "State the customer problem, solution, and result exactly.", answer: identityManual.customerProblem },
+  { id: "service", question: "Deliver the 30-second Business System Setup explanation accurately.", answer: identityManual.service30 },
+  { id: "standards", question: "Name the professional standards without inventing or removing the core requirements.", answer: identityManual.standards.join("; ") }
+];
